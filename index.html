@@ -407,7 +407,14 @@
 
     function displayQuote(quote) {
       document.getElementById('quote-text').textContent = quote.text;
-      document.getElementById('quote-author').textContent = quote.author;
+      const authorEl = document.getElementById('quote-author');
+      if (quote.author) {
+        authorEl.textContent = quote.author;
+        authorEl.style.display = '';
+      } else {
+        authorEl.textContent = '';
+        authorEl.style.display = 'none';
+      }
 
       const sourceEl = document.getElementById('quote-source');
       if (quote.url) {
