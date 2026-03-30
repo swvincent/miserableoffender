@@ -20,17 +20,27 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 
 ## Architecture
 
-- **index.html** — Single page with all markup and inline JavaScript
-- **miserable.css** — All styles with CSS custom properties
+- **index.html** — Random quote display with fade animations and a refresh button
+- **allquotes.html** — Full list of all quotes loaded from `quotes.json`
+- **about.html** — About page explaining the site's purpose and context
+- **miserable.css** — Styles for `index.html` (design tokens, card, animations, nav)
+- **page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`)
 - **quotes.json** — Array of quote objects `{ text, author?, source, url? }`
 - **images/** — Static assets
 
-All JavaScript is inline in `index.html`. Key functions:
+All JavaScript is inline in each HTML file. Key functions in `index.html`:
 - `getRandomQuote()` — picks a random quote, avoiding consecutive repeats via `lastIndex`
 - `displayQuote(quote)` — renders to DOM, conditionally shows/hides author and source elements
 - `nextQuote()` — orchestrates fade-out → swap → fade-in animations
 
+All pages share a hamburger nav menu (top-right, fixed). The nav links differ per page:
+- `index.html` — links to All Quotes, About
+- `allquotes.html` — links to Home (index), About
+- `about.html` — links to Home (index), All Quotes
+
 ## CSS Design Tokens
+
+Defined in `miserable.css`, available to all pages:
 
 ```css
 --ink:    #e8e2d9   /* primary text */
