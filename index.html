@@ -17,7 +17,7 @@
     <p id="quote-text"></p>
     <p id="quote-author"></p>
     <p id="quote-source"></p>
-    <button class="new-quote-btn" onclick="nextQuote()" title="New quote">↻</button>
+    <button class="new-quote-btn" title="New quote">↻</button>
   </div>
 
   <script>
@@ -85,6 +85,7 @@
       .then(data => {
         quotes = data;
         displayQuote(getRandomQuote());
+        document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
       });
   </script>
 
