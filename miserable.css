@@ -111,6 +111,8 @@ body {
   transform: rotate(180deg);
 }
 
+.hidden { display: none; }
+
 /* Fade animation triggered via JS */
 .fade-out { animation: fadeOut 0.3s ease forwards; }
 .fade-in  { animation: fadeIn  0.5s ease forwards; }

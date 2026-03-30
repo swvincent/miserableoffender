@@ -34,13 +34,8 @@
     function displayQuote(quote) {
       document.getElementById('quote-text').textContent = quote.text;
       const authorEl = document.getElementById('quote-author');
-      if (quote.author) {
-        authorEl.textContent = quote.author;
-        authorEl.style.display = '';
-      } else {
-        authorEl.textContent = '';
-        authorEl.style.display = 'none';
-      }
+      authorEl.textContent = quote.author ?? '';
+      authorEl.classList.toggle('hidden', !quote.author);
 
       const sourceEl = document.getElementById('quote-source');
       if (quote.url) {
