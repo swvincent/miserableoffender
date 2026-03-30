@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Miserable Offender</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="miserable.css"/>
+  <link rel="stylesheet" href="page.css"/>
+</head>
+<body class="page-body">
+
+  <nav class="site-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="allquotes.html">All Quotes</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="page-title">About</h1>
+
+    <section class="page-section">
+      <h2>What is a Miserable Offender?</h2>
+      <p>The phrase comes from the General Confession in the <em>Book of Common Prayer</em>, first published in 1549 under Archbishop Thomas Cranmer. In the morning and evening prayer services, the congregation confesses together: <em>"We have erred and strayed from thy ways like lost sheep… we have left undone those things which we ought to have done, and we have done those things which we ought not to have done… We are miserable offenders."</em></p>
+      <p>It is a striking phrase — blunt, almost brutal in its self-assessment. Yet it sits within a context of grace: the confession is immediately followed by absolution. The miserable offender is not abandoned to their misery but met with mercy.</p>
+    </section>
+
+    <section class="page-section">
+      <h2>Why a Quote Collection?</h2>
+      <p>The concept of the miserable offender — of human frailty, moral failure, and the need for forgiveness — has resonated through centuries of literature, theology, philosophy, and poetry. Writers from Augustine to Dostoevsky, from Julian of Norwich to T.S. Eliot, have returned again and again to this same territory: the gap between who we are and who we ought to be, and what might be found in that gap.</p>
+      <p>This site collects those moments of recognition — passages where authors have named the human condition with unusual honesty, and sometimes with unusual hope.</p>
+    </section>
+
+    <section class="page-section">
+      <h2>The Book of Common Prayer</h2>
+      <p>The <em>Book of Common Prayer</em> is the historic liturgical text of Anglican Christianity. Its prose, shaped largely by Cranmer in the sixteenth century, has had an outsized influence on the English language and on English literature. Phrases from its prayers and services appear, sometimes unnoticed, throughout poetry and fiction written over the past five centuries.</p>
+      <p>The 1662 edition remains the standard text of the Church of England. Various revisions exist for Anglican churches around the world, but the language of the original has proved remarkably durable.</p>
+    </section>
+
+    <section class="page-section">
+      <h2>About This Site</h2>
+      <p>Miserable Offender is a small personal project — a place to gather quotes that feel true about the human condition. It is not affiliated with any church, denomination, or institution. Quotes are drawn from theology, literature, and philosophy across a wide range of traditions and centuries.</p>
+      <p>If you have a quote that belongs here, or notice an error in attribution, feel free to open an issue or pull request on GitHub.</p>
+    </section>
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.site-nav')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      }
+    });
+  </script>
+
+</body>
+</html>
