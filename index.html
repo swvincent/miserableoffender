@@ -54,6 +54,9 @@
       const textEl   = document.getElementById('quote-text');
       const authorEl = document.getElementById('quote-author');
       const sourceEl = document.getElementById('quote-source');
+      const btn      = document.querySelector('.new-quote-btn');
+
+      btn.disabled = true;
 
       textEl.classList.add('fade-out');
       authorEl.classList.add('fade-out');
@@ -74,6 +77,7 @@
           textEl.classList.remove('fade-in');
           authorEl.classList.remove('fade-in');
           sourceEl.classList.remove('fade-in');
+          btn.disabled = false;
         }, { once: true });
       }, { once: true });
     }
