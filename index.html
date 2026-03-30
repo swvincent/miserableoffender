@@ -107,24 +107,22 @@
       opacity: 1;
     }
 
-    /* Button */
+    /* Refresh arrow */
     .new-quote-btn {
-      margin-top: 1.6rem;
-      padding: 0.6rem 2rem;
-      background: transparent;
-      border: 1px solid var(--silver);
+      margin-top: 0.8rem;
+      display: inline-block;
+      background: none;
+      border: none;
       color: var(--silver);
-      font-family: 'Lato', sans-serif;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+      font-size: 2.8rem;
+      opacity: 0.4;
       cursor: pointer;
-      border-radius: 6px;
-      transition: background 0.25s, color 0.25s;
+      padding: 0;
+      transition: opacity 0.25s, transform 0.4s ease;
     }
     .new-quote-btn:hover {
-      background: var(--silver);
-      color: var(--cream);
+      opacity: 0.85;
+      transform: rotate(180deg);
     }
 
     /* Fade animation triggered via JS */
@@ -141,7 +139,7 @@
     <p id="quote-text"></p>
     <p id="quote-author"></p>
     <p id="quote-source"></p>
-    <button class="new-quote-btn" onclick="nextQuote()">New Quote</button>
+    <button class="new-quote-btn" onclick="nextQuote()" title="New quote">↻</button>
   </div>
 
   <script>
