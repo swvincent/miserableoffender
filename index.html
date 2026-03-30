@@ -55,12 +55,11 @@
       const authorEl = document.getElementById('quote-author');
       const sourceEl = document.getElementById('quote-source');
 
-      // fade out
       textEl.classList.add('fade-out');
       authorEl.classList.add('fade-out');
       sourceEl.classList.add('fade-out');
 
-      setTimeout(() => {
+      textEl.addEventListener('animationend', () => {
         textEl.classList.remove('fade-out');
         authorEl.classList.remove('fade-out');
         sourceEl.classList.remove('fade-out');
@@ -71,12 +70,12 @@
         authorEl.classList.add('fade-in');
         sourceEl.classList.add('fade-in');
 
-        setTimeout(() => {
+        textEl.addEventListener('animationend', () => {
           textEl.classList.remove('fade-in');
           authorEl.classList.remove('fade-in');
           sourceEl.classList.remove('fade-in');
-        }, 500);
-      }, 300);
+        }, { once: true });
+      }, { once: true });
     }
 
     // Load quotes from JSON, then display a random one
