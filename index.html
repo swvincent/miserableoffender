@@ -35,19 +35,6 @@
       color: var(--ink);
     }
 
-    /* Decorative corner marks */
-    body::before, body::after {
-      content: '';
-      position: fixed;
-      width: 120px; height: 120px;
-      border-color: var(--gold);
-      border-style: solid;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-    body::before { top: 28px; left: 28px;  border-width: 1px 0 0 1px; }
-    body::after  { bottom: 28px; right: 28px; border-width: 0 1px 1px 0; }
-
     /* ── Card ── */
     .quote-card {
       max-width: 680px;
