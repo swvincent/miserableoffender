@@ -85,6 +85,9 @@
         quotes = data;
         displayQuote(getRandomQuote());
         document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
+      })
+      .catch(() => {
+        document.getElementById('quote-text').textContent = 'Failed to load quotes.';
       });
   </script>
 
