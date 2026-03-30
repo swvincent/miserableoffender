@@ -12,6 +12,16 @@
 </head>
 <body>
 
+  <nav class="site-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="allquotes.html">All Quotes</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
+
   <div class="quote-card" id="card">
     <span class="open-quote">&ldquo;</span>
     <p id="quote-text"></p>
@@ -76,6 +86,20 @@
         }, { once: true });
       }, { once: true });
     }
+
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.site-nav')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      }
+    });
 
     // Load quotes from JSON, then display a random one
     fetch('quotes.json')
