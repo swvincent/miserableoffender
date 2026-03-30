@@ -1,0 +1,98 @@
+/* ── Card ── */
+.quote-card {
+  max-width: 680px;
+  width: 90%;
+  text-align: center;
+  padding: 3.5rem 3rem;
+  position: relative;
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeUp 0.8s ease forwards 0.15s;
+}
+
+/* Opening quote mark */
+.open-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 6rem;
+  line-height: 0.5;
+  color: var(--silver);
+  opacity: 0.55;
+  display: block;
+  margin-bottom: 0.25rem;
+}
+
+/* Quote text */
+#quote-text {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.15rem, 2.8vw, 1.6rem);
+  font-style: italic;
+  line-height: 1.7;
+  color: var(--ink);
+  letter-spacing: 0.01em;
+}
+
+/* Author */
+#quote-author {
+  margin-top: 1.5rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+#quote-author::before { content: '— '; }
+
+/* Source */
+/* When author is absent, preserve the same gap between quote text and source
+   as when author is present (1.5rem author margin + 0.5rem source margin = 2rem) */
+#quote-author.hidden + #quote-source {
+  margin-top: 2rem;
+}
+#quote-source {
+  margin-top: 0.5rem;
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  font-style: italic;
+  color: var(--muted);
+  opacity: 0.9;
+}
+
+#quote-source a {
+  color: var(--muted);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  opacity: 0.9;
+  transition: color 0.2s, opacity 0.2s;
+}
+#quote-source a:hover {
+  color: var(--silver);
+  opacity: 1;
+}
+
+/* Refresh arrow */
+.new-quote-btn {
+  margin-top: 0.8rem;
+  display: inline-block;
+  background: none;
+  border: none;
+  color: var(--silver);
+  font-size: 2.8rem;
+  opacity: 0.4;
+  cursor: pointer;
+  padding: 0;
+  transition: opacity 0.25s, transform 0.4s ease;
+}
+.new-quote-btn:hover {
+  opacity: 0.85;
+  transform: rotate(180deg);
+}
+
+.hidden { display: none; }
+
+/* Fade animation triggered via JS */
+.fade-out { animation: fadeOut 0.3s ease forwards; }
+.fade-in  { animation: fadeIn  0.5s ease forwards; }
+@keyframes fadeOut { to { opacity: 0; transform: translateY(-8px); } }
+@keyframes fadeIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
