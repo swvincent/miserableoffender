@@ -1,3 +1,12 @@
+@font-face {
+  font-family: 'Chomsky';
+  src: url('../fonts/chomsky-webfont.woff2') format('woff2'),
+       url('../fonts/chomsky-webfont.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 :root {
   --ink:    #e8e2d9;
   --cream:  #0d0d0d;

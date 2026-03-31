@@ -16,7 +16,7 @@
 }
 
 .page-title {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Chomsky', serif;
   font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 400;
   color: var(--ink);
