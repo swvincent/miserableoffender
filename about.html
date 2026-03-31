@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About — Miserable Offender</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+
+  <link rel="stylesheet" href="css/miserable.css"/>
+  <link rel="stylesheet" href="css/page.css"/>
+</head>
+<body class="page-body">
+
+  <nav class="site-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="index.html">Home</a>
+      <a href="allquotes.html">All Quotes</a>
+    </div>
+  </nav>
+
+  <main class="page-content">
+    <h1 class="page-title">About</h1>
+
+    <p class="page-intro">Hi, I'm Scott, and I'm a miserable offender.</p>
+
+    <section class="page-section">
+      <h2>Miserable Offender?</h2>
+      <p>It's a phrase from the General Confession traditionally found in the Anglican <em>Book of Common Prayer</em>: <em>"We have erred and strayed from thy ways like lost sheep. We have followed too much the devices and desires of our own hearts. We have offended against thy holy laws... But thou O Lord have mercy upon us, miserable offenders."</em></p>
+    </section>
+
+    <section class="page-section">
+      <h2>Okay, but what is a Miserable Offender?</h2>
+      <p>In short, a pitiable sinner in need of God's grace.</p>
+      <p>For a longer answer, I highly recommend reading or listening to <a href="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">Us Miserable Offenders</a> by John Koessler.</p>
+    </section>
+
+    <section class="page-section">
+      <h2>Okay, so what is this website?</h2>
+      <p>It's a place for me to share various quotes and scripture that relate to "Miserable Offenders" and to the use and language of Common Prayer.</p>
+    </section>
+
+    <section class="page-section">
+      <h2>Contact Information</h2>
+      <p>Questions? Comments? Email me: <span class="obfus">em tod notorp ta ffosim</span></p>
+
+    </section>
+
+  </main>
+
+  <script>
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.site-nav')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      }
+    });
+  </script>
+
+</body>
+</html>

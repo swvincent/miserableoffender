@@ -1,328 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-    <!-- 
-        MiserableOffender.com
-    -->
-    <head>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Miserable Offender</title>
 
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <title>Miserable Offender</title>
-		<link rel="stylesheet" href="static/normalize.css">
-		<link id="sakura-css" rel="stylesheet" href="static/css/sakura-dark.css">
-		<link id="miserable-css" rel="stylesheet" href="static/css/miserable.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
 
-    </head>
-    <body>
+  <link rel="stylesheet" href="css/miserable.css"/>
+  <link rel="stylesheet" href="css/index.css"/>
+</head>
+<body>
 
-		<h1>
-			<img src="images/cranmer-miserable-offender.png" alt="Miserable Offender">
-		</h1>
+  <nav class="site-nav">
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-menu" id="nav-menu">
+      <a href="allquotes.html">All Quotes</a>
+      <a href="about.html">About</a>
+    </div>
+  </nav>
 
-		<p>
-			Welcome, I'm Scott, and I'm a miserable offender. If you don't know what that is, I suggest reading or listening to 
-			<a href="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">Us Miserable Offenders</a> by John Koessler.
-		</p>
-		<p>
-			What follows here is a list of quotes and bits of scripture that relate to "Miserable Offenders" and to the use and language of Common Prayer.
-		</p>
-		<hr>
+  <div class="page-center">
+    <h1 class="site-title">Miserable Offender</h1>
 
-		<blockquote cite="http://justus.anglican.org/resources/bcp/1928/MP.htm">
-			But thou, O Lord, have mercy upon us, miserable offenders. Spare thou those, O God, who confess their faults. Restore thou those who are penitent; 
-			According to thy promises declared unto mankind in Christ Jesus our Lord.
-		</blockquote>
-		<p>
-			<cite><a href="http://justus.anglican.org/resources/bcp/1928/MP.htm">1928 American BCP General Confession</a></cite>
-		</p>
+    <div class="quote-card" id="card">
+    <span class="open-quote">&ldquo;</span>
+    <p id="quote-text"></p>
+    <p id="quote-author"></p>
+    <p id="quote-source"></p>
+    <button class="new-quote-btn" title="New quote">↻</button>
+    </div>
+  </div>
 
-		<blockquote cite="https://anglicanhistory.org/usa/advent/misoff.html">
-			I do not think whether we are feeling miserable or not matters. I think it is using the word miserable in the old sense -- meaning an object of pity...
-			The Prayer Book does not mean that we should feel miserable but that if we could see things from a sufficient height above we should all realize that we are in fact proper objects of pity.
-		</blockquote>
-		<p>
-			C.S. Lewis - <cite><a href="https://anglicanhistory.org/usa/advent/misoff.html">Miserable Offenders: An Interpretation of Prayer Book Language</a></cite>
-		</p>
+  <script>
+    let quotes = [];
+    let lastIndex = -1;
 
-		<blockquote cite="https://www.biblegateway.com/passage/?search=Luke%2018.13&version=NASB">
-			But the tax collector, standing some distance away, was even unwilling to raise his eyes toward heaven, but was beating his chest, saying, 'God, be merciful to me, the sinner!'
-		</blockquote>
-		<p>
-			<cite><a href="https://www.biblegateway.com/passage/?search=Luke%2018.13&version=NASB">Luke 18.13 (NASB 2020)</a></cite>
-		</p>
+    function getRandomQuote() {
+      let idx;
+      do { idx = Math.floor(Math.random() * quotes.length); } while (idx === lastIndex);
+      lastIndex = idx;
+      return quotes[idx];
+    }
 
-		<blockquote>
-			Few people feel at any given moment as though they are indeed "miserable sinners," and to modern ears the phrase 
-			sounds unhealthily self-lacerating, but... the Latin original clarifies. "Miserable" is derived from <em>miseria</em> - 
-			the familiar liturgical phrase <em>miserere me, Domine</em> means "have mercy on me, Lord" - so a "miserable sinner" is 
-			simply "a sinner in need of mercy."
-		</blockquote>
-		<p>
-			Alan Jacobs - <cite>The Book of Common Prayer: A Biography (2013)</cite>
-		</p>
+    function displayQuote(quote) {
+      document.getElementById('quote-text').textContent = quote.text;
+      const authorEl = document.getElementById('quote-author');
+      authorEl.textContent = quote.author ?? '';
+      authorEl.classList.toggle('hidden', !quote.author);
 
-		<blockquote cite="https://bcponline.org/DailyOffice/noonday.html">
-			O God, make speed to save us. O Lord, make haste to help us.
-		</blockquote>
-		<p>
-			<cite><a href="https://bcponline.org/DailyOffice/noonday.html">1979 BCP Order of Service for Noonday</a></cite>
-		</p>
+      const sourceEl = document.getElementById('quote-source');
+      if (quote.url) {
+        sourceEl.innerHTML = `<a href="${quote.url}" target="_blank" rel="noopener noreferrer">${quote.source}</a>`;
+      } else {
+        sourceEl.textContent = quote.source;
+      }
+    }
 
-		<blockquote cite="https://www.gutenberg.org/ebooks/21351">
-			The expressions, used [in The Confession] to acknowledge the wickedness of sin and the defects of human life, will seem to be excessive whenever we are making 
-			light of our faults. But in proportion as we realise the perfection of God's holiness, we shall find them suitable to every shade of defect and sin.
-		</blockquote>
-		<p>
-			Percival Jackson - <cite><a href="https://www.gutenberg.org/ebooks/21351">The Prayer Book Explained (1901)</a></cite>
-		</p>
+    function nextQuote() {
+      const textEl   = document.getElementById('quote-text');
+      const authorEl = document.getElementById('quote-author');
+      const sourceEl = document.getElementById('quote-source');
+      const btn      = document.querySelector('.new-quote-btn');
 
-		<blockquote>
-			The idea that I must always find my own words, that I must generate my own devotion from scratch every morning, 
-			that unless I think of new words I must be spiritually lazy or deficient - that has the all-too-familiar sign of human pride, 
-			of "doing it my way": of, yes, works-righteousness.
-		</blockquote>
-		<p>
-			N.T. Wright - <cite>Simply Christian (2006)</cite>
-		</p>
+      btn.disabled = true;
 
-		<blockquote cite="https://www.blueletterbible.org/kjv/mar/2/1/s_959017">
-			I came not to call the righteous, but sinners to repentance.
-		</blockquote>
-		<p>
-			<cite><a href="https://www.blueletterbible.org/kjv/mar/2/1/s_959017">Mark 2.17 (KJV)</a></cite>
-		</p>
+      textEl.classList.add('fade-out');
+      authorEl.classList.add('fade-out');
+      sourceEl.classList.add('fade-out');
 
-		<blockquote cite="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">
-			When the Book of Common Prayer calls us miserable sinners, it is both a recognition of what we are and a reminder of God’s response. Specifically, 
-			it tells us that we are those whose moral condition is so deplorable that the only remedy is the goodness and mercy of God, no matter how we may feel.
-		</blockquote>
-		<p>
-			John Koessler - <cite><a href="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">Us Miserable Offenders</a></cite>
-		</p>		
+      textEl.addEventListener('animationend', () => {
+        textEl.classList.remove('fade-out');
+        authorEl.classList.remove('fade-out');
+        sourceEl.classList.remove('fade-out');
 
-		<blockquote cite="https://hymnary.org/hymn/EH1982/382">
-			Seven whole days, not one in seven, I will praise thee.
-		</blockquote>
-		<p>
-			George Herbert - <cite><a href="https://hymnary.org/hymn/EH1982/382">King of Glory, King of Peace</a></cite>
-		</p>		
+        displayQuote(getRandomQuote());
 
-		<blockquote>
-			I have come to find it a great sign of God's love that he shows me my sin when I ask.
-		</blockquote>
-		<p>
-			Julie Lane-Gay - <cite>The Riches of Your Grace: Living in the Book of Common Prayer (2024)</cite>
-		</p>
+        textEl.classList.add('fade-in');
+        authorEl.classList.add('fade-in');
+        sourceEl.classList.add('fade-in');
 
-		<blockquote>
-			...some people naturally approach everything in life, including their relationship with God in very much an organized, 
-			thinking, logical fashion: they may well find that a daily office with 17 different colored markers sticking out of 
-			their Bible or prayer book is exactly the way to keep them anchored.
-		</blockquote>
+        textEl.addEventListener('animationend', () => {
+          textEl.classList.remove('fade-in');
+          authorEl.classList.remove('fade-in');
+          sourceEl.classList.remove('fade-in');
+          btn.disabled = false;
+        }, { once: true });
+      }, { once: true });
+    }
 
-		<p>
-			N.T. Wright - <cite><a href="https://youtu.be/iJ6bWaKulEQ?si=uNYORPJUAQllvjEw&t=1107">Ask N.T. Wright Anything Podcast (August 31, 2025)</a></cite>
-		</p>
+    // Hamburger menu toggle
+    const hamburger = document.getElementById('hamburger');
+    const navMenu   = document.getElementById('nav-menu');
+    hamburger.addEventListener('click', () => {
+      const open = navMenu.classList.toggle('open');
+      hamburger.setAttribute('aria-expanded', open);
+    });
+    document.addEventListener('click', e => {
+      if (!e.target.closest('.site-nav')) {
+        navMenu.classList.remove('open');
+        hamburger.setAttribute('aria-expanded', false);
+      }
+    });
 
-		<blockquote cite="https://anglicanway.org/j-i-packer-on-revaluing-the-book-of-common-prayer-2/">
-			...we are weak and impotent; God is great and strong; urgently, therefore, we cry for his help. Surely this is realistic; surely this is the biblical way to pray.
-		</blockquote>
-		<p>
-			J.I. Packer - <cite><a href="https://anglicanway.org/j-i-packer-on-revaluing-the-book-of-common-prayer-2/">For Truth, Unity, and Hope: Revaluing the Book of Common Prayer (2000)</a></cite>
-		</p>
+    // Load quotes from JSON, then display a random one
+    fetch('quotes.json')
+      .then(r => r.json())
+      .then(data => {
+        quotes = data;
+        displayQuote(getRandomQuote());
+        document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
+      })
+      .catch(() => {
+        document.getElementById('quote-text').textContent = 'Failed to load quotes.';
+      });
+  </script>
 
-		<blockquote cite="http://justus.anglican.org/resources/bcp/1928/Psalms1.htm">
-			I acknowledged my sin unto thee; and mine unrighteousness have I not hid. 
-			I said, I will confess my sins unto the LORD; and so thou forgavest the wickedness of my sin.
-		</blockquote>
-		<p>
-			<cite><a href="http://justus.anglican.org/resources/bcp/1928/Psalms1.htm">Psalm 32.5-6 (1928 American BCP Psalter)</a></cite>
-		</p>
-
-		<blockquote cite="https://twitter.com/johnpauldickson/status/1597225684580958208?s=20&t=kd9_mx18BeE69tUOyg-Bfw">
-			I have come to feel that the danger of set prayers becoming rote and ritualistic is no greater than the danger of extempore prayers becoming banal and unbiblical.
-		</blockquote>
-		<p>
-			John Dickson - <cite><a href="https://twitter.com/johnpauldickson/status/1597225684580958208?s=20&t=kd9_mx18BeE69tUOyg-Bfw">Twitter Post (November 28, 2022)</a></cite>
-		</p>
-
-		<blockquote>
-			In order to be 'edifying', as Cranmer intended, the Prayer Book needed not just to be 
-			understandable but to be worth understanding. He therefore based it on the Bible, so 
-			that it expresses the teaching of the Bible, often in the Bible's own words.
-		</blockquote>
-		<p>
-			R.T. Beckwith - <cite>Praying with Understanding (2006)</cite>
-		</p>
-
-		<blockquote cite="https://www.biblegateway.com/passage/?search=1%20John%201%3A8-9&version=KJV">
-			If we say that we have no sin, we deceive ourselves, and the truth is not in us. If we confess our sins,
-			he is faithful and just to forgive us our sins, and to cleanse us from all unrighteousness.
-		</blockquote>
-		<p>
-			<cite><a href="https://www.biblegateway.com/passage/?search=1%20John%201%3A8-9&version=KJV">1 John 1.8-9 (KJV)</a></cite>
-		</p>
-
-		<blockquote cite="https://anglicanhistory.org/usa/advent/misoff.html">
-			Does that sound very gloomy? Does Christianity encourage morbid introspection? The alternative is much more morbid. 
-			Those who do not think about their own sins make up for it by thinking incessantly about the sins of others. 
-			It is healthier to think of one's own.
-		</blockquote>
-		<p>
-			C.S. Lewis - <cite><a href="https://anglicanhistory.org/usa/advent/misoff.html">Miserable Offenders: An Interpretation of Prayer Book Language</a></cite>
-		</p>
-
-		<blockquote cite="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">
-			To call ourselves miserable offenders is to admit that God’s pity, shown to us in the person and work of Jesus Christ, is the only thing that can save us from our sin... 
-			When we admit that we are miserable offenders who have broken God’s laws by failing to do the things we ought to have done and doing things we ought not to have done, we position ourselves for grace.
-		</blockquote>
-		<p>
-			John Koessler - <cite><a href="https://johnkoessler.com/2020/11/04/us-miserable-offenders/">Us Miserable Offenders</a></cite>
-		</p>
-
-		<blockquote cite="https://www.biblegateway.com/passage/?search=Romans%207.24&version=KJV">
-			O wretched man that I am! who shall deliver me from the body of this death?
-		</blockquote>
-		<p>
-			<cite><a href="https://www.biblegateway.com/passage/?search=Romans%207.24&version=KJV">Romans 7.24 (KJV)</a></cite>
-		</p>
-
-		<blockquote>
-			We moderns are... so concerned that if we get help from anyone else our prayer won't be "authentic" and come from our own heart... 
-			Frankly, as Jesus pointed out, there's a lot that comes from the depths of our hearts which may be authentic but isn't very pretty.
-		</blockquote>
-		<p>
-			N.T. Wright - <cite>Simply Christian (2006)</cite>
-		</p>
-
-		<blockquote cite="https://wesleyscholar.com/wp-content/uploads/2019/01/JW-The-Sunday-Service-of-Methodists-1788.pdf">
-			I believe there is no liturgy in the World, either in ancient or modern language, which breathes more of a solid, scriptural, rational piety, than the Common Prayer of the Church of England.
-		</blockquote>
-		<p>
-			John Wesley - <cite><a href="https://wesleyscholar.com/wp-content/uploads/2019/01/JW-The-Sunday-Service-of-Methodists-1788.pdf">Preface to the Sunday Service of the Methodists in North America (1784)</a></cite>
-		</p>
-
-		<blockquote>
-			"And there is no health in us." There is no hedging or qualification. It is a radical admission that we are sick, and that to find healing we must look outside ourselves.
-		</blockquote>
-		<p>
-			Samuel L. Bray and Drew Nathaniel Keane - <cite>How to Use the Book of Common Prayer (2024)</cite>
-		</p>		
-
-		<blockquote cite="https://thehomelyhours.com/2017/03/23/a-baptist-and-the-bcp/">
-			The Book of Common Prayer becomes a launching pad for us to repetitively keep the deep truths of Scripture before us. 
-			It's a helpful channel to guide our prayers and make sure they don't devolve into banality and triviality.
-		</blockquote>
-		<p>
-			Jordan Riggle - <cite><a href="https://thehomelyhours.com/2017/03/23/a-baptist-and-the-bcp/">A Baptist and the BCP (2017)</a></cite>
-		</p>
-
-		<blockquote cite="https://www.biblegateway.com/passage/?search=1%20Timothy%201%3A15&version=NRSVUE">
-			The saying is sure and worthy of full acceptance: 
-			that Christ Jesus came into the world to save sinners - of whom I am the foremost.
-		</blockquote>
-		<p>
-			<cite><a href="https://www.biblegateway.com/passage/?search=1%20Timothy%201%3A15&version=NRSVUE">1 Timothy 1.15 (NRSVue)</a></cite>
-		</p>
-
-		<blockquote cite="https://www.ccel.org/creeds/common-prayer-1549.pdf">
-			The vocabulary of the prayers may occasionally seem slightly old-fashioned to modern readers, but at the same time we 
-			recognize these petitions to God as the ultimate model, emulated by Protestant and Catholic believers everywhere, of 
-			how we ought to speak in the presence of our Creator.
-		</blockquote>
-		<p>
-			W.S. Peterson - <cite><a href="https://www.ccel.org/creeds/common-prayer-1549.pdf">Prayers from the First English Prayer Book (1998)</a></cite>
-		</p>
-
-		<blockquote>
-			For sin is the great barrier to communion between God and His creatures. No act of converse with God can be profitable, 
-			much less fitting, if we have not laid bare our disobedience to His will and consciously sought reconciliation with His love.
-		</blockquote>
-		<p>
-			Massey Hamilton Shepherd, Jr. - <cite>The Oxford American Prayer Book Commentary (1950)</cite>
-		</p>	
-
-		<blockquote>
-			There is some loss in the use of printed words; but there is greater gain. We have in them the accumulated wisdom and beauty of the Christian Church, the garnered excellence of many saints.
-		</blockquote>
-		<p>
-			Rev. Percy Dearmer - <cite>The Story of the Prayer Book (1933)</cite>
-		</p>
-
-		<blockquote>
-			There's something powerful hearing a congregation say, "We acknowledge and bewail our manifold sins and weakness,
-			which we, from time to time, most grievously have committed by thought, word and deed." Nothing sets up singing
-			or a message of hope like a time to express sorrow over our sins.
-		</blockquote>
-		<p>
-			Mark Vroegop - <cite>Dark Clouds, Deep Mercy (2019)</cite>
-		</p>
-
-		<blockquote cite="http://justus.anglican.org/resources/bcp/1928/Psalms2.htm">
-			O remember not our old sins, but have mercy upon us, and that soon; for we are come to great misery.
-		</blockquote>
-		<p>
-			<cite><a href="http://justus.anglican.org/resources/bcp/1928/Psalms2.htm">Psalm 79.8 (1928 American BCP Psalter)</a></cite>
-		</p>
-
-		<blockquote cite="https://anglicanway.org/j-i-packer-on-revaluing-the-book-of-common-prayer-2/">
-			It is true and indeed important to say that using the Prayer Book properly involves learning a language. But should this daunt us? We do not complain of having to 
-			learn the language of computers...in order to be able to use computers; why then should anyone balk at learning the language one needs in order to worship God?
-		</blockquote>
-		<p>
-			J.I. Packer - <cite><a href="https://anglicanway.org/j-i-packer-on-revaluing-the-book-of-common-prayer-2/">For Truth, Unity, and Hope: Revaluing the Book of Common Prayer (2000)</a></cite>
-		</p>
-
-		<blockquote cite="https://web.archive.org/web/20220411071431/https://northamanglican.com/and-apart-from-your-grace-there-is-no-health-in-us/">
-			One of the crown jewels of the Book of Common Prayer is the General Confession in Morning and Evening Prayer. In theological terms, 
-			it offers a clear-eyed depiction of what Christians believe is the human condition: we are prone to curve inward away from God, we need his forgiveness.
-		</blockquote>
-		<p>
-			Samuel L. Bray - <cite><a href="https://web.archive.org/web/20220411071431/https://northamanglican.com/and-apart-from-your-grace-there-is-no-health-in-us/">And (Apart From Your Grace) There is No Health In Us (2018)</a></cite>
-		</p>
-
-		<blockquote>
-			For [Samuel Johnson], and for many who have felt themselves at the mercy of chaotic forces from within or without, 
-			the style of the prayer book has healing powers. It provides equitable balance when we ourselves have none.
-		</blockquote>
-		<p>
-			Alan Jacobs - <cite>The Book of Common Prayer: A Biography (2013)</cite>
-		</p>
-
-		<blockquote cite="https://www.esv.org/verses/Psalm+38:18/">
-			I confess my iniquity; I am sorry for my sin.
-		</blockquote>
-		<p>
-			<cite><a href="https://www.esv.org/verses/Psalm+38:18/">Psalm 38.18 (ESV)</a></cite>
-		</p>
-
-		<blockquote>
-			"Sins" and "wickedness" are countercultural words, but they bring life-giving freedom. They remind 
-			me that we live in a thoroughly fallen world, and they pull me again to seek God's forgiveness.
-		</blockquote>
-		<p>
-			Julie Lane-Gay - <cite>The Riches of Your Grace: Living in the Book of Common Prayer (2024)</cite>
-		</p>
-
-		<blockquote>
-			Good liturgy - other people's prayers, whether for corporate or individual use - can be, should be, a sign and means of grace, 
-			an occasion for humility (accepting that someone else has said, better than I can, what I deeply want to express) and gratitude.
-		</blockquote>
-		<p>
-			N.T. Wright - <cite>Simply Christian (2006)</cite>
-		</p>
-
-		<blockquote cite="http://justus.anglican.org/resources/bcp/1789/Readings1789&1892C.htm#21Trinity">
-			Grant, we beseech thee, merciful Lord, to thy faithful people pardon and peace, that they may be cleansed from all their sins, 
-			and serve thee with a quiet mind; through Jesus Christ our Lord. Amen.
-		</blockquote>
-		<p>
-			<cite><a href="http://justus.anglican.org/resources/bcp/1789/Readings1789&1892C.htm#21Trinity">1928 American BCP Collect for The Twenty-First Sunday after Trinity</a></cite>
-		</p>
-
-		<hr>
-		<p>
-			Questions? Comments? misoff<!--TODO:Fix This--> a<!--TODO:Adjust CSS-->t pro<!--Future changes needed-->ton<!----> dot me
-		</p>
-		
-	</body>
+</body>
 </html>
