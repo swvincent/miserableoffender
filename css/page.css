@@ -56,6 +56,16 @@
   margin-bottom: 0;
 }
 
+.page-section a {
+  color: var(--silver);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s;
+}
+.page-section a:hover {
+  color: var(--ink);
+}
+
 /* ── All Quotes list ── */
 .aq-entry {
   margin-bottom: 2.5rem;
