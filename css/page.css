@@ -25,6 +25,14 @@
   text-align: center;
 }
 
+.page-intro {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.05rem, 2vw, 1.2rem);
+  line-height: 1.85;
+  color: var(--muted);
+  margin-bottom: 2.25rem;
+}
+
 .page-section {
   margin-bottom: 2.25rem;
 }
@@ -64,6 +72,11 @@
 }
 .page-section a:hover {
   color: var(--ink);
+}
+
+.obfus {
+  unicode-bidi: bidi-override;
+  direction: rtl;
 }
 
 /* ── All Quotes list ── */
