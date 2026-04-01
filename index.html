@@ -65,6 +65,34 @@
       }
     }
 
+    function initDeck(data) {
+      deck = [...data];
+      shuffle(deck);
+      displayQuote(getNextQuote());
+    }
+
+    function setupKeyboardNav() {
+      document.addEventListener('keydown', e => {
+        if (e.key === ' ' || e.key === 'ArrowRight') {
+          e.preventDefault();
+          if (!document.querySelector('.new-quote-btn').disabled) nextQuote();
+        }
+      });
+    }
+
+    function setupSwipeNav() {
+      let touchStartX, touchStartY;
+      document.addEventListener('touchstart', e => {
+        touchStartX = e.changedTouches[0].clientX;
+        touchStartY = e.changedTouches[0].clientY;
+      }, { passive: true });
+      document.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dy = e.changedTouches[0].clientY - touchStartY;
+        if (Math.hypot(dx, dy) > 80 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
+      }, { passive: true });
+    }
+
     function nextQuote() {
       const textEl   = document.getElementById('quote-text');
       const authorEl = document.getElementById('quote-author');
@@ -115,26 +143,10 @@
     fetch('quotes.json')
       .then(r => r.json())
       .then(data => {
-        deck = [...data];
-        shuffle(deck);
-        displayQuote(getNextQuote());
+        initDeck(data);
         document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
-        document.addEventListener('keydown', e => {
-          if (e.key === ' ' || e.key === 'ArrowRight') {
-            e.preventDefault();
-            if (!document.querySelector('.new-quote-btn').disabled) nextQuote();
-          }
-        });
-        let touchStartX, touchStartY;
-        document.addEventListener('touchstart', e => {
-          touchStartX = e.changedTouches[0].clientX;
-          touchStartY = e.changedTouches[0].clientY;
-        }, { passive: true });
-        document.addEventListener('touchend', e => {
-          const dx = e.changedTouches[0].clientX - touchStartX;
-          const dy = e.changedTouches[0].clientY - touchStartY;
-          if (Math.hypot(dx, dy) > 100 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
-        }, { passive: true });
+        setupKeyboardNav();
+        setupSwipeNav();
       })
       .catch(() => {
         document.getElementById('quote-text').textContent = 'Failed to load quotes.';
