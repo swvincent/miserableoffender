@@ -39,6 +39,7 @@
     let deck = [];
     let deckIndex = 0;
 
+    // Fisher-Yates shuffle (in place)
     function shuffle(arr) {
       for (let i = arr.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
@@ -82,14 +83,19 @@
 
     function setupSwipeNav() {
       let touchStartX, touchStartY;
+
+      // Record where the finger first touched down
       document.addEventListener('touchstart', e => {
         touchStartX = e.changedTouches[0].clientX;
         touchStartY = e.changedTouches[0].clientY;
       }, { passive: true });
+
       document.addEventListener('touchend', e => {
-        const dx = e.changedTouches[0].clientX - touchStartX;
+        const dx = e.changedTouches[0].clientX - touchStartX; // negative = leftward
         const dy = e.changedTouches[0].clientY - touchStartY;
-        if (Math.hypot(dx, dy) > 80 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
+
+        // Trigger only on a predominantly horizontal left swipe (>80px)
+        if (dx < -80 && Math.abs(dy) < Math.abs(dx) && !document.querySelector('.new-quote-btn').disabled) nextQuote();
       }, { passive: true });
     }
 
