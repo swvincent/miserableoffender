@@ -133,7 +133,7 @@
         document.addEventListener('touchend', e => {
           const dx = e.changedTouches[0].clientX - touchStartX;
           const dy = e.changedTouches[0].clientY - touchStartY;
-          if (Math.hypot(dx, dy) > 40 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
+          if (Math.hypot(dx, dy) > 100 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
         }, { passive: true });
       })
       .catch(() => {
