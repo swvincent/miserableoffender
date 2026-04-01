@@ -125,6 +125,16 @@
             if (!document.querySelector('.new-quote-btn').disabled) nextQuote();
           }
         });
+        let touchStartX, touchStartY;
+        document.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].clientX;
+          touchStartY = e.changedTouches[0].clientY;
+        }, { passive: true });
+        document.addEventListener('touchend', e => {
+          const dx = e.changedTouches[0].clientX - touchStartX;
+          const dy = e.changedTouches[0].clientY - touchStartY;
+          if (Math.hypot(dx, dy) > 40 && !document.querySelector('.new-quote-btn').disabled) nextQuote();
+        }, { passive: true });
       })
       .catch(() => {
         document.getElementById('quote-text').textContent = 'Failed to load quotes.';
