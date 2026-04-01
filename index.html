@@ -36,14 +36,19 @@
   </div>
 
   <script>
-    let quotes = [];
-    let lastIndex = -1;
+    let deck = [];
+    let deckIndex = 0;
 
-    function getRandomQuote() {
-      let idx;
-      do { idx = Math.floor(Math.random() * quotes.length); } while (idx === lastIndex);
-      lastIndex = idx;
-      return quotes[idx];
+    function shuffle(arr) {
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+    }
+
+    function getNextQuote() {
+      if (deckIndex >= deck.length) deckIndex = 0;
+      return deck[deckIndex++];
     }
 
     function displayQuote(quote) {
@@ -77,7 +82,7 @@
         authorEl.classList.remove('fade-out');
         sourceEl.classList.remove('fade-out');
 
-        displayQuote(getRandomQuote());
+        displayQuote(getNextQuote());
 
         textEl.classList.add('fade-in');
         authorEl.classList.add('fade-in');
@@ -106,12 +111,13 @@
       }
     });
 
-    // Load quotes from JSON, then display a random one
+    // Load quotes from JSON, shuffle into a deck, then cycle through in order
     fetch('quotes.json')
       .then(r => r.json())
       .then(data => {
-        quotes = data;
-        displayQuote(getRandomQuote());
+        deck = [...data];
+        shuffle(deck);
+        displayQuote(getNextQuote());
         document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
       })
       .catch(() => {

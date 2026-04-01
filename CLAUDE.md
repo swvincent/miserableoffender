@@ -30,7 +30,8 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 - **images/** — Static assets
 
 All JavaScript is inline in each HTML file. Key functions in `index.html`:
-- `getRandomQuote()` — picks a random quote, avoiding consecutive repeats via `lastIndex`
+- `shuffle(arr)` — Fisher-Yates in-place shuffle
+- `getNextQuote()` — advances through the shuffled `deck`; wraps to start when exhausted (no reshuffle)
 - `displayQuote(quote)` — renders to DOM, conditionally shows/hides author and source elements
 - `nextQuote()` — orchestrates fade-out → swap → fade-in animations
 
