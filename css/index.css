@@ -18,6 +18,11 @@
   animation: fadeUp 0.8s ease forwards;
 }
 
+/* Stack title onto two lines on narrow screens to avoid hamburger overlap */
+@media (max-width: 480px) {
+  .site-title span { display: block; }
+}
+
 /* ── Card ── */
 .quote-card {
   max-width: 680px;
