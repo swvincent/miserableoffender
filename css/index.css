@@ -8,7 +8,7 @@
 /* ── Site title ── */
 .site-title {
   position: fixed;
-  top: 1.25rem;
+  top: 3rem;
   left: 0;
   right: 0;
   z-index: 10;
@@ -120,10 +120,11 @@
   transform: translateX(-50%) rotate(180deg);
 }
 
-/* Narrow side padding on short viewports to widen the text column
-   and reduce line count. Prevents overlapping header/button */
+/* Narrow side padding  and hide decorative quote on short viewports to widen
+   the text column and reduce line count. Prevents overlapping header/button */
 @media (max-height: 840px) {
   .quote-card { padding-left: 0.5rem; padding-right: 0.5rem; }
+  .open-quote { display: none; }
 }
 
 .hidden { display: none; }
