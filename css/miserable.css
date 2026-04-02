@@ -8,8 +8,8 @@
 }
 
 :root {
-  --ink:    #e8e2d9;
-  --cream:  #0d0d0d;
+  --parchment: #e8e2d9;
+  --charcoal:  #0d0d0d;
   --silver: #c0c0c8;
   --muted:  #d8d0c4;
 }
@@ -18,7 +18,7 @@
 
 body {
   min-height: 100vh;
-  background-color: var(--cream);
+  background-color: var(--charcoal);
   background-image:
     radial-gradient(ellipse at 20% 20%, rgba(192,192,200,0.06) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 80%, rgba(192,192,200,0.04) 0%, transparent 60%),
@@ -27,7 +27,7 @@ body {
   align-items: center;
   justify-content: center;
   font-family: 'Lato', sans-serif;
-  color: var(--ink);
+  color: var(--parchment);
 }
 
 /* ── Navigation ── */
@@ -80,7 +80,7 @@ body {
   text-decoration: none;
   transition: color 0.2s;
 }
-.nav-menu a:hover { color: var(--ink); }
+.nav-menu a:hover { color: var(--parchment); }
 
 @keyframes fadeUp {
   to { opacity: 1; transform: translateY(0); }

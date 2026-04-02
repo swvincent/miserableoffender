@@ -19,7 +19,7 @@
   font-family: 'Chomsky', serif;
   font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 400;
-  color: var(--ink);
+  color: var(--parchment);
   margin-bottom: 2.5rem;
   letter-spacing: 0.02em;
   text-align: center;
@@ -57,7 +57,7 @@
 
 .page-section p em {
   font-style: italic;
-  color: var(--ink);
+  color: var(--parchment);
 }
 
 .page-section p:last-child {
@@ -71,7 +71,7 @@
   transition: color 0.2s;
 }
 .page-section a:hover {
-  color: var(--ink);
+  color: var(--parchment);
 }
 
 /* ── All Quotes list ── */
@@ -89,7 +89,7 @@
   font-size: clamp(1.05rem, 2vw, 1.2rem);
   font-style: italic;
   line-height: 1.85;
-  color: var(--ink);
+  color: var(--parchment);
   margin-bottom: 0.75rem;
 }
 
