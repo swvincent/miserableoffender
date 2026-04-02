@@ -7,13 +7,17 @@
 
 /* ── Site title ── */
 .site-title {
+  position: fixed;
+  top: 1.25rem;
+  left: 0;
+  right: 0;
+  z-index: 10;
   font-family: 'Chomsky', serif;
   font-size: clamp(2rem, 5vw, 2.8rem);
   font-weight: 400;
   letter-spacing: 0.08em;
   color: var(--parchment);
   text-align: center;
-  margin-bottom: 0.5rem;
   opacity: 0;
   animation: fadeUp 0.8s ease forwards;
 }
@@ -96,10 +100,12 @@
   opacity: 1;
 }
 
-/* Refresh arrow */
+/* Refresh arrow — fixed to viewport so quote length changes don't move it */
 .new-quote-btn {
-  margin-top: 0.8rem;
-  display: inline-block;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
   background: none;
   border: none;
   color: var(--silver);
@@ -111,7 +117,13 @@
 }
 .new-quote-btn:hover {
   opacity: 0.85;
-  transform: rotate(180deg);
+  transform: translateX(-50%) rotate(180deg);
+}
+
+/* Narrow side padding on short viewports to widen the text column
+   and reduce line count. Prevents overlapping header/button */
+@media (max-height: 840px) {
+  .quote-card { padding-left: 0.5rem; padding-right: 0.5rem; }
 }
 
 .hidden { display: none; }
