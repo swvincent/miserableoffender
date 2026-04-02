@@ -20,7 +20,7 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 
 ## Architecture
 
-- **index.html** — Random quote display with fade animations and a refresh button
+- **index.html** — Random quote display with fade animations; advance via button, keyboard (Space/→), or left swipe
 - **allquotes.html** — Full list of all quotes loaded from `quotes.json`
 - **about.html** — About page explaining the site's purpose and context
 - **css/miserable.css** — Shared design tokens, nav, and base styles (used by all pages)
@@ -45,10 +45,10 @@ All pages share a hamburger nav menu (top-right, fixed). The nav links differ pe
 Defined in `css/miserable.css`, available to all pages:
 
 ```css
---ink:    #e8e2d9   /* primary text */
---cream:  #0d0d0d   /* background */
---silver: #c0c0c8   /* accent */
---muted:  #d8d0c4   /* secondary text */
+--parchment: #e8e2d9   /* primary text */
+--charcoal:  #0d0d0d   /* background */
+--silver:    #c0c0c8   /* accent */
+--muted:     #d8d0c4   /* secondary text */
 ```
 
 ## Adding Quotes
