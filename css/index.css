@@ -120,6 +120,12 @@
   transform: translateX(-50%) rotate(180deg);
 }
 
+/* Narrow side padding on short viewports to widen the text column
+   and reduce line count. Prevents overlapping header/button */
+@media (max-height: 840px) {
+  .quote-card { padding-left: 0.5rem; padding-right: 0.5rem; }
+}
+
 .hidden { display: none; }
 
 /* Fade animation triggered via JS */
