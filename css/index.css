@@ -128,7 +128,7 @@
 
 /* Hide decorative quote on very short viewports to further prevent
    overlapping header/button (iPhone SE, for example) */
-@media (max-height: 775px) {
+@media (max-height: 760px) {
   .open-quote { display: none; }
 }
 
