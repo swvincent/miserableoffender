@@ -96,10 +96,12 @@
   opacity: 1;
 }
 
-/* Refresh arrow */
+/* Refresh arrow — fixed to viewport so quote length changes don't move it */
 .new-quote-btn {
-  margin-top: 0.8rem;
-  display: inline-block;
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
   background: none;
   border: none;
   color: var(--silver);
@@ -111,7 +113,7 @@
 }
 .new-quote-btn:hover {
   opacity: 0.85;
-  transform: rotate(180deg);
+  transform: translateX(-50%) rotate(180deg);
 }
 
 .hidden { display: none; }
