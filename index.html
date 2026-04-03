@@ -34,7 +34,10 @@
     </div>
   </div>
 
-  <button class="new-quote-btn" title="New quote (Space / →)">↻</button>
+  <div class="quote-nav">
+    <button class="prev-quote-btn" title="Previous quote (←)">←</button>
+    <button class="next-quote-btn" title="Next quote (Space / →)">→</button>
+  </div>
 
   <script>
     let deck = [];
@@ -83,10 +86,10 @@
       document.addEventListener('keydown', e => {
         if (e.key === ' ' || e.key === 'ArrowRight') {
           e.preventDefault();
-          if (!document.querySelector('.new-quote-btn').disabled) nextQuote();
+          if (!document.querySelector('.next-quote-btn').disabled) nextQuote();
         } else if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          if (!document.querySelector('.new-quote-btn').disabled) prevQuote();
+          if (!document.querySelector('.next-quote-btn').disabled) prevQuote();
         }
       });
     }
@@ -103,7 +106,7 @@
       document.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
         const dy = e.changedTouches[0].clientY - touchStartY;
-        const btn = document.querySelector('.new-quote-btn');
+        const btn = document.querySelector('.next-quote-btn');
 
         if (Math.abs(dx) > 80 && Math.abs(dy) < Math.abs(dx) && !btn.disabled) {
           if (dx < 0) nextQuote(); else prevQuote();
@@ -115,9 +118,9 @@
       const textEl   = document.getElementById('quote-text');
       const authorEl = document.getElementById('quote-author');
       const sourceEl = document.getElementById('quote-source');
-      const btn      = document.querySelector('.new-quote-btn');
+      const btns = document.querySelectorAll('.quote-nav button');
 
-      btn.disabled = true;
+      btns.forEach(b => b.disabled = true);
 
       textEl.classList.add('fade-out');
       authorEl.classList.add('fade-out');
@@ -138,7 +141,7 @@
           textEl.classList.remove('fade-in');
           authorEl.classList.remove('fade-in');
           sourceEl.classList.remove('fade-in');
-          btn.disabled = false;
+          btns.forEach(b => b.disabled = false);
         }, { once: true });
       }, { once: true });
     }
@@ -165,7 +168,8 @@
       .then(r => r.json())
       .then(data => {
         initDeck(data);
-        document.querySelector('.new-quote-btn').addEventListener('click', nextQuote);
+        document.querySelector('.prev-quote-btn').addEventListener('click', prevQuote);
+        document.querySelector('.next-quote-btn').addEventListener('click', nextQuote);
         setupKeyboardNav();
         setupSwipeNav();
       })

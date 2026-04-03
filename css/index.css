@@ -100,12 +100,16 @@
   opacity: 1;
 }
 
-/* Refresh arrow — fixed to viewport so quote length changes don't move it */
-.new-quote-btn {
+/* Prev/next buttons — fixed to viewport so quote length changes don't move them */
+.quote-nav {
   position: fixed;
   bottom: 2rem;
   left: 50%;
   transform: translateX(-50%);
+  display: flex;
+  gap: 2.5rem;
+}
+.quote-nav button {
   background: none;
   border: none;
   color: var(--silver);
@@ -113,11 +117,10 @@
   opacity: 0.4;
   cursor: pointer;
   padding: 0;
-  transition: opacity 0.25s, transform 0.4s ease;
+  transition: opacity 0.25s;
 }
-.new-quote-btn:hover {
+.quote-nav button:hover {
   opacity: 0.85;
-  transform: translateX(-50%) rotate(180deg);
 }
 
 /* Narrow side padding on short viewports to widen the text column
