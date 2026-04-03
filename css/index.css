@@ -119,9 +119,10 @@
   padding: 0;
   transition: opacity 0.25s;
 }
-.quote-nav button:hover {
-  opacity: 0.85;
+@media (hover: hover) {
+  .quote-nav button:hover { opacity: 0.85; }
 }
+.quote-nav button:active { opacity: 0.85; }
 
 /* Narrow side padding on short viewports to widen the text column
    and reduce line count. Prevents overlapping header/button */
