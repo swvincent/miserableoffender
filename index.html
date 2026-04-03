@@ -53,6 +53,12 @@
       return deck[deckIndex++];
     }
 
+    function getPrevQuote() {
+      deckIndex -= 2;
+      if (deckIndex < 0) deckIndex = deck.length + deckIndex;
+      return deck[deckIndex++];
+    }
+
     function displayQuote(quote) {
       document.getElementById('quote-text').textContent = quote.text;
       const authorEl = document.getElementById('quote-author');
@@ -78,6 +84,9 @@
         if (e.key === ' ' || e.key === 'ArrowRight') {
           e.preventDefault();
           if (!document.querySelector('.new-quote-btn').disabled) nextQuote();
+        } else if (e.key === 'ArrowLeft') {
+          e.preventDefault();
+          if (!document.querySelector('.new-quote-btn').disabled) prevQuote();
         }
       });
     }
@@ -92,15 +101,17 @@
       }, { passive: true });
 
       document.addEventListener('touchend', e => {
-        const dx = e.changedTouches[0].clientX - touchStartX; // negative = leftward
+        const dx = e.changedTouches[0].clientX - touchStartX;
         const dy = e.changedTouches[0].clientY - touchStartY;
+        const btn = document.querySelector('.new-quote-btn');
 
-        // Trigger only on a predominantly horizontal left swipe (>80px)
-        if (dx < -80 && Math.abs(dy) < Math.abs(dx) && !document.querySelector('.new-quote-btn').disabled) nextQuote();
+        if (Math.abs(dx) > 80 && Math.abs(dy) < Math.abs(dx) && !btn.disabled) {
+          if (dx < 0) nextQuote(); else prevQuote();
+        }
       }, { passive: true });
     }
 
-    function nextQuote() {
+    function changeQuote(getQuoteFn) {
       const textEl   = document.getElementById('quote-text');
       const authorEl = document.getElementById('quote-author');
       const sourceEl = document.getElementById('quote-source');
@@ -117,7 +128,7 @@
         authorEl.classList.remove('fade-out');
         sourceEl.classList.remove('fade-out');
 
-        displayQuote(getNextQuote());
+        displayQuote(getQuoteFn());
 
         textEl.classList.add('fade-in');
         authorEl.classList.add('fade-in');
@@ -131,6 +142,9 @@
         }, { once: true });
       }, { once: true });
     }
+
+    const nextQuote = () => changeQuote(getNextQuote);
+    const prevQuote = () => changeQuote(getPrevQuote);
 
     // Hamburger menu toggle
     const hamburger = document.getElementById('hamburger');
