@@ -1,6 +1,6 @@
 # Miserable Offender
 
-Source for [MiserableOffender.com](https://www.miserableoffender.com) — a site that displays quotes related to the "Miserable Offender" concept from the Anglican *Book of Common Prayer* and to the practice of Common Prayer.
+Source for [MiserableOffender.com](https://www.miserableoffender.com) — a site that displays quotes related to the phrase "Miserable Offender" from the Anglican *Book of Common Prayer* and to the use and language of Common Prayer.
 
 ## Structure
 

@@ -23,19 +23,22 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 - **index.html** — Random quote display with fade animations; navigate via buttons, keyboard (←/→/Space), or swipe
 - **allquotes.html** — Full list of all quotes loaded from `quotes.json`
 - **about.html** — About page explaining the site's purpose and context
-- **css/miserable.css** — Shared design tokens, nav, and base styles (used by all pages)
+- **css/miserable.css** — Shared design tokens, nav, base styles, and `prefers-reduced-motion` rule (used by all pages)
 - **css/index.css** — Styles specific to `index.html` (card, animations)
-- **stickers.html** — Sticker gallery with downloadable full-size images
+- **stickers.html** — Sticker gallery; clicking opens full-size image in a new tab
 - **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`, `stickers.html`)
 - **quotes.json** — Array of quote objects `{ text, author?, source, url? }`
 - **images/** — Static assets; sticker thumbnails use the `-thumb` suffix convention
 - **js/nav.js** — Shared hamburger menu logic (included by all pages)
+- **favicon.ico**, **favicon-32x32.png**, **favicon-16x16.png**, **apple-touch-icon.png** — Favicon files (MO monogram)
+- **robots.txt** — Allows all crawlers; references sitemap
+- **sitemap.xml** — Lists the four main pages
 
 Key functions in `index.html` (inline script):
 - `shuffle(arr)` — Fisher-Yates in-place shuffle
 - `getNextQuote()` — advances through the shuffled `deck`; wraps to start when exhausted (no reshuffle)
 - `getPrevQuote()` — steps back through the deck, wrapping if needed
-- `displayQuote(quote)` — renders to DOM, conditionally shows/hides author and source elements
+- `displayQuote(quote)` — renders to DOM, conditionally shows/hides author and source elements; sets/removes `cite` attribute on the `<blockquote>`
 - `changeQuote(getQuoteFn)` — orchestrates fade-out → swap → fade-in animations; shared by `nextQuote` and `prevQuote`
 
 All pages share a hamburger nav menu (top-right, fixed). The nav links differ per page:
