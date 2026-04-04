@@ -90,7 +90,7 @@
           if (!document.querySelector('.next-quote-btn').disabled) nextQuote();
         } else if (e.key === 'ArrowLeft') {
           e.preventDefault();
-          if (!document.querySelector('.next-quote-btn').disabled) prevQuote();
+          if (!document.querySelector('.prev-quote-btn').disabled) prevQuote();
         }
       });
     }
@@ -107,9 +107,9 @@
       document.addEventListener('touchend', e => {
         const dx = e.changedTouches[0].clientX - touchStartX;
         const dy = e.changedTouches[0].clientY - touchStartY;
-        const btn = document.querySelector('.next-quote-btn');
+        const animating = document.querySelector('.next-quote-btn').disabled;
 
-        if (Math.abs(dx) > 80 && Math.abs(dy) < Math.abs(dx) && !btn.disabled) {
+        if (Math.abs(dx) > 80 && Math.abs(dy) < Math.abs(dx) && !animating) {
           if (dx < 0) nextQuote(); else prevQuote();
         }
       }, { passive: true });
