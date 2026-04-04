@@ -25,9 +25,10 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 - **about.html** — About page explaining the site's purpose and context
 - **css/miserable.css** — Shared design tokens, nav, and base styles (used by all pages)
 - **css/index.css** — Styles specific to `index.html` (card, animations)
-- **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`)
+- **stickers.html** — Sticker gallery with downloadable full-size images
+- **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`, `stickers.html`)
 - **quotes.json** — Array of quote objects `{ text, author?, source, url? }`
-- **images/** — Static assets
+- **images/** — Static assets; sticker thumbnails use the `-thumb` suffix convention
 
 All JavaScript is inline in each HTML file. Key functions in `index.html`:
 - `shuffle(arr)` — Fisher-Yates in-place shuffle
@@ -37,9 +38,10 @@ All JavaScript is inline in each HTML file. Key functions in `index.html`:
 - `changeQuote(getQuoteFn)` — orchestrates fade-out → swap → fade-in animations; shared by `nextQuote` and `prevQuote`
 
 All pages share a hamburger nav menu (top-right, fixed). The nav links differ per page:
-- `index.html` — links to All Quotes, About
-- `allquotes.html` — links to Home (index), About
-- `about.html` — links to Home (index), All Quotes
+- `index.html` — links to All Quotes, Stickers, About
+- `allquotes.html` — links to Home (index), Stickers, About
+- `about.html` — links to Home (index), All Quotes, Stickers
+- `stickers.html` — links to Home (index), All Quotes, About
 
 ## CSS Design Tokens
 
