@@ -11,6 +11,8 @@ Source for [MiserableOffender.com](https://www.miserableoffender.com) — a site
 - **css/index.css** — Styles specific to the quote display page
 - **css/page.css** — Shared styles for interior pages
 - **quotes.json** — Quote data (`text`, `source` required; `author`, `url` optional)
+- **js/nav.js** — Shared hamburger menu logic (included by all pages)
+- **images/** — Static assets; sticker thumbnails use the `-thumb` suffix convention
 
 ## Development
 

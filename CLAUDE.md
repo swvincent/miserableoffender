@@ -29,8 +29,9 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 - **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`, `stickers.html`)
 - **quotes.json** — Array of quote objects `{ text, author?, source, url? }`
 - **images/** — Static assets; sticker thumbnails use the `-thumb` suffix convention
+- **js/nav.js** — Shared hamburger menu logic (included by all pages)
 
-All JavaScript is inline in each HTML file. Key functions in `index.html`:
+Key functions in `index.html` (inline script):
 - `shuffle(arr)` — Fisher-Yates in-place shuffle
 - `getNextQuote()` — advances through the shuffled `deck`; wraps to start when exhausted (no reshuffle)
 - `getPrevQuote()` — steps back through the deck, wrapping if needed

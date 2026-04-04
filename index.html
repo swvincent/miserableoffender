@@ -40,6 +40,7 @@
     <button class="next-quote-btn" title="Next quote (Space / →)">&#8250;</button>
   </div>
 
+  <script src="js/nav.js"></script>
   <script>
     let deck = [];
     let deckIndex = 0;
@@ -149,20 +150,6 @@
 
     const nextQuote = () => changeQuote(getNextQuote);
     const prevQuote = () => changeQuote(getPrevQuote);
-
-    // Hamburger menu toggle
-    const hamburger = document.getElementById('hamburger');
-    const navMenu   = document.getElementById('nav-menu');
-    hamburger.addEventListener('click', () => {
-      const open = navMenu.classList.toggle('open');
-      hamburger.setAttribute('aria-expanded', open);
-    });
-    document.addEventListener('click', e => {
-      if (!e.target.closest('.site-nav')) {
-        navMenu.classList.remove('open');
-        hamburger.setAttribute('aria-expanded', false);
-      }
-    });
 
     // Load quotes from JSON, shuffle into a deck, then cycle through in order
     fetch('quotes.json')
