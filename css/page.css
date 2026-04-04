@@ -133,6 +133,7 @@
   text-transform: uppercase;
   color: var(--muted);
 }
+.aq-author::before { content: '— '; }
 
 .aq-source {
   font-family: 'Lato', sans-serif;
