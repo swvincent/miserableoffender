@@ -42,7 +42,7 @@
     <h1 class="site-title"><span>Miserable</span> <span>Offender</span></h1>
 
     <blockquote class="quote-card" id="card">
-    <span class="open-quote">&ldquo;</span>
+    <span class="open-quote" aria-hidden="true">&ldquo;</span>
     <p id="quote-text"><noscript>JavaScript must be enabled to display quotes.</noscript></p>
     <p id="quote-author"></p>
     <p id="quote-source"></p>
@@ -87,8 +87,10 @@
       const sourceEl = document.getElementById('quote-source');
       if (quote.url) {
         sourceEl.innerHTML = `<a href="${quote.url}" target="_blank" rel="noopener noreferrer">${quote.source}</a>`;
+        document.getElementById('card').setAttribute('cite', quote.url);
       } else {
         sourceEl.textContent = quote.source;
+        document.getElementById('card').removeAttribute('cite');
       }
     }
 
