@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>All Quotes — Miserable Offender</title>
+  <title>Stickers — Miserable Offender</title>
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet">
@@ -19,14 +19,24 @@
     </button>
     <div class="nav-menu" id="nav-menu">
       <a href="./">Home</a>
-      <a href="stickers.html">Stickers</a>
+      <a href="allquotes.html">All Quotes</a>
       <a href="about.html">About</a>
     </div>
   </nav>
 
   <main class="page-content">
-    <h1 class="page-title">All Quotes</h1>
-    <div id="quotes-list"></div>
+    <h1 class="page-title">Stickers</h1>
+
+    <p class="page-intro">Here are some of the stickers I've created to promote the website and start conversations. You're welcome to download them and print your own if you like.</p>
+
+    <div class="sticker-grid">
+      <a class="sticker-item" href="images/miserable-offender-cranmer-sticker.png" target="_blank" rel="noopener noreferrer">
+        <img src="images/miserable-offender-cranmer-sticker.png" alt="Miserable Offender — Cranmer sticker">
+      </a>
+      <a class="sticker-item" href="images/love-your-enemies-dirk-willems-sticker.png" target="_blank" rel="noopener noreferrer">
+        <img src="images/love-your-enemies-dirk-willems-sticker.png" alt="Love Your Enemies — Dirk Willems sticker">
+      </a>
+    </div>
   </main>
 
   <script>
@@ -42,28 +52,6 @@
         hamburger.setAttribute('aria-expanded', false);
       }
     });
-
-    fetch('quotes.json')
-      .then(r => r.json())
-      .then(quotes => {
-        const list = document.getElementById('quotes-list');
-        list.innerHTML = quotes.map(q => {
-          const source = q.url
-            ? `<span class="aq-source"><a href="${q.url}" target="_blank" rel="noopener noreferrer">${q.source}</a></span>`
-            : `<span class="aq-source">${q.source}</span>`;
-          const author = q.author
-            ? `<span class="aq-author">${q.author}</span>`
-            : '';
-          return `
-            <blockquote class="aq-entry">
-              <p class="aq-text">${q.text}</p>
-              <footer class="aq-footer">${author}${source}</footer>
-            </blockquote>`;
-        }).join('');
-      })
-      .catch(() => {
-        document.getElementById('quotes-list').textContent = 'Failed to load quotes.';
-      });
   </script>
 
 </body>

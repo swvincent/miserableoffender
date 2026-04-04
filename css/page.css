@@ -74,6 +74,30 @@
   color: var(--parchment);
 }
 
+/* ── Sticker gallery ── */
+.sticker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.sticker-item {
+  display: block;
+  border-radius: 8px;
+  overflow: hidden;
+  transition: opacity 0.2s, transform 0.2s;
+}
+.sticker-item:hover {
+  opacity: 0.85;
+  transform: scale(1.03);
+}
+
+.sticker-item img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ── All Quotes list ── */
 .aq-entry {
   margin-bottom: 2.5rem;
