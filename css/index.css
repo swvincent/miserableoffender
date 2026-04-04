@@ -143,7 +143,3 @@
 .fade-in  { animation: fadeIn  0.5s ease forwards; }
 @keyframes fadeOut { to { opacity: 0; transform: translateY(-8px); } }
 @keyframes fadeIn  { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: none; } }
-
-@media (prefers-reduced-motion: reduce) {
-  *, .site-title, .quote-card, .fade-out, .fade-in { animation-duration: 0.001s !important; }
-}

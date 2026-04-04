@@ -58,7 +58,7 @@
             ? `<span class="aq-author">${q.author}</span>`
             : '';
           return `
-            <blockquote class="aq-entry">
+            <blockquote class="aq-entry"${q.url ? ` cite="${q.url}"` : ''}>
               <p class="aq-text">${q.text}</p>
               <footer class="aq-footer">${author}${source}</footer>
             </blockquote>`;
