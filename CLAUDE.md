@@ -1,7 +1,5 @@
 # CLAUDE.md
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
-
 ## Overview
 
 This is a static HTML website (no build process, no dependencies) that displays random quotes related to the "miserable offender" concept from the Book of Common Prayer. It is hosted at www.miserableoffender.com via GitHub Pages.
@@ -23,41 +21,20 @@ The `fetch('quotes.json')` call in the JS requires a server (not `file://`), so 
 - **index.html** — Random quote display with fade animations; navigate via buttons, keyboard (←/→/Space), or swipe
 - **allquotes.html** — Full list of all quotes loaded from `quotes.json`
 - **about.html** — About page explaining the site's purpose and context
-- **css/miserable.css** — Shared design tokens, nav, base styles, and `prefers-reduced-motion` rule (used by all pages)
-- **css/index.css** — Styles specific to `index.html` (card, animations)
 - **stickers.html** — Sticker gallery; clicking opens full-size image in a new tab
-- **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`, `stickers.html`)
-- **quotes.json** — Array of quote objects `{ text, author?, source, url? }`
+- **404.html** — Custom 404 page; uses `css/page.css` like other interior pages
+- **css/miserable.css** — Shared design tokens (`--parchment`, `--charcoal`, `--silver`, `--muted`), nav styles, base styles, and `prefers-reduced-motion` rule (used by all pages)
+- **css/index.css** — Styles specific to `index.html` (card, animations)
+- **css/page.css** — Shared styles for interior pages (`about.html`, `allquotes.html`, `stickers.html`, `404.html`)
+- **quotes.json** — Array of quote objects; `text` and `source` are required, `author` and `url` are optional
 - **images/** — Static assets; sticker thumbnails use the `-thumb` suffix convention
-- **js/nav.js** — Shared hamburger menu logic (included by all pages)
-- **favicon.ico**, **favicon-32x32.png**, **favicon-16x16.png**, **apple-touch-icon.png** — Favicon files (MO monogram)
-- **robots.txt** — Allows all crawlers; references sitemap
-- **sitemap.xml** — Lists the four main pages
+- **js/nav.js** — Shared hamburger nav logic (included by all pages)
+- **CNAME** — Sets the custom domain for GitHub Pages (`www.miserableoffender.com`)
 
 Key functions in `index.html` (inline script):
-- `shuffle(arr)` — Fisher-Yates in-place shuffle
+- `shuffle(arr)` — Fisher-Yates shuffle
 - `getNextQuote()` — advances through the shuffled `deck`; wraps to start when exhausted (no reshuffle)
 - `getPrevQuote()` — steps back through the deck, wrapping if needed
 - `displayQuote(quote)` — renders to DOM, conditionally shows/hides author and source elements; sets/removes `cite` attribute on the `<blockquote>`
 - `changeQuote(getQuoteFn)` — orchestrates fade-out → swap → fade-in animations; shared by `nextQuote` and `prevQuote`
 
-All pages share a hamburger nav menu (top-right, fixed). The nav links differ per page:
-- `index.html` — links to All Quotes, Stickers, About
-- `allquotes.html` — links to Home (index), Stickers, About
-- `about.html` — links to Home (index), All Quotes, Stickers
-- `stickers.html` — links to Home (index), All Quotes, About
-
-## CSS Design Tokens
-
-Defined in `css/miserable.css`, available to all pages:
-
-```css
---parchment: #e8e2d9   /* primary text */
---charcoal:  #0d0d0d   /* background */
---silver:    #c0c0c8   /* accent */
---muted:     #d8d0c4   /* secondary text */
-```
-
-## Adding Quotes
-
-Add objects to `quotes.json`. Both `author` and `url` are optional; `text` and `source` are required.
