@@ -8,6 +8,6 @@ hamburger.addEventListener('click', () => {
 document.addEventListener('click', e => {
   if (!e.target.closest('.site-nav')) {
     navMenu.classList.remove('open');
-    hamburger.setAttribute('aria-expanded', false);
+    hamburger.setAttribute('aria-expanded', 'false');
   }
 });
