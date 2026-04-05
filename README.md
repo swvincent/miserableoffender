@@ -40,3 +40,7 @@ Add objects to `quotes.json`:
 ## Hosting
 
 Deployed via GitHub Pages from the `main` branch.
+
+## License
+
+[MIT](LICENSE)
